@@ -6,26 +6,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Timothy Fung
  * @version 2023-12-12
  */
-public class Person1 extends Actor
+public class Roland extends Actor
 {
     MyWorld world = (MyWorld) getWorld();
     /**
      * Act - do whatever the person1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int enemyXPosition = 100;
+    GreenfootImage idle = new GreenfootImage("images/Roland_Idle.png");
     public void act()
     {
-        move(getOneObjectAtOffset(enemyXPosition, 0, Test.class));
+        setImage(idle);
+        move();
     }
     
-    public void move(Actor enemy)
+    public void move()
     {
-        turnTowards(enemy.getX(), enemy.getY());
-        if(!intersects(enemy))
+        if(!intersects(MyWorld.getEnemy()))
         {
-            move(1);
-            enemyXPosition --;
+            turnTowards(MyWorld.getEnemy());
+            move(-1);
+        }
+    }
+    
+    public void turnTowards(Actor enemy)
+    {
+        if(enemy.getX() >= getX())
+        {
+            idle.mirrorHorizontally();
         }
     }
 }

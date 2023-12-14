@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    static Test test = new Test();
+    static Roland roland = new Roland();
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -25,9 +26,12 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        Person1 person1 = new Person1();
-        addObject(person1,113,215);
-        Test test = new Test();
-        addObject(test,213,215);
+        addObject(roland,450,200);
+        addObject(test,150,200);
+    }
+    
+    public static Enemy getEnemy()
+    {
+        return test;
     }
 }

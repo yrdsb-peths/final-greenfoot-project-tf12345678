@@ -14,6 +14,10 @@ public class Roland extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     GreenfootImage idle = new GreenfootImage("images/Roland_Idle.png");
+    GreenfootImage move = new GreenfootImage("images/Roland_Move.png");
+    GreenfootImage currentImage = idle;
+    boolean facingWest = true;
+    Enemy enemy = MyWorld.getEnemy();
     public void act()
     {
         setImage(idle);
@@ -22,18 +26,30 @@ public class Roland extends Actor
     
     public void move()
     {
-        if(!intersects(MyWorld.getEnemy()))
+        if(!intersects(enemy))
         {
-            turnTowards(MyWorld.getEnemy());
-            move(-1);
+            turnTowards();
+            if(facingWest == true)
+            {
+                move(-1);
+            }
+            else
+            {
+                move(1);
+            }
         }
     }
     
-    public void turnTowards(Actor enemy)
+    public void turnTowards()
     {
-        if(enemy.getX() >= getX())
+        if(enemy.getX() >= getX() && facingWest == true)
         {
-            idle.mirrorHorizontally();
+            currentImage.mirrorHorizontally();
+            facingWest = false;
+        }else if(enemy.getX() <= getX() && facingWest == false)
+        {
+            currentImage.mirrorHorizontally();
+            facingWest = true;
         }
     }
 }

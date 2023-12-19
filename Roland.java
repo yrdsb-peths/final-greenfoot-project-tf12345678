@@ -21,6 +21,7 @@ public class Roland extends Actor
     int attackCount = 0;
     boolean performingAttack = false;
     private SimpleTimer timer = new SimpleTimer();
+    GreenfootImage[] zelkova = {zelkova1, zelkova2};
     /**
      * Act - do whatever the person1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -88,22 +89,47 @@ public class Roland extends Actor
     
     public void zelkovaWorkshop()
     {
-        timer.mark();
-        while(performingAttack)
+        for(int i = 0; i < 2; i++)
         {
-            if(timer.millisElapsed() == 500)
-            {
-                currentImage = zelkova1;
-                setImage(currentImage);
-                enemy.setHP(-50);
-            }
-            if(timer.millisElapsed() == 1000)
-            {
-                currentImage = zelkova2;
-                setImage(currentImage);
-                enemy.setHP(-30);
-                performingAttack = false;
-            }
+            timer.mark();
+            while(timer.millisElapsed() < 500);
+            Log.info(i);
+            setImage(zelkova[i]);
         }
+        
+        // timer.mark();
+        // while(timer.millisElapsed() < 500)
+        // {
+            
+        // }
+        // setImage(zelkova1);
+        // enemy.setHP(-30);
+        // timer.mark();
+        // while(timer.millisElapsed() < 500)
+        // {
+            // Log.info(timer.millisElapsed());
+        // }
+        // setImage(zelkova2);
+        // enemy.setHP(-30);
+        
+        // while(timer.millisElapsed() < 1000)
+        // {
+            
+            // if(timer.millisElapsed() == 1000)
+            // {
+                // currentImage = zelkova2;
+                // setImage(currentImage);
+                // Log.info(currentImage.toString());
+                // enemy.setHP(-30);
+                // performingAttack = false;
+            // }
+            // if(timer.millisElapsed() == 500)
+            // {
+                // currentImage = zelkova1;
+                // setImage(currentImage);
+                // Log.info(currentImage.toString());
+                // enemy.setHP(-30);
+            // }
+        // }
     }
 }

@@ -1,8 +1,8 @@
 /**
- * Write a description of class Log here.
+ * Prints the input given into the terminal window
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Timothy Fung
+ * @version 2023-12-18
  */
 public class Log  
 {

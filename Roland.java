@@ -11,18 +11,14 @@ public class Roland extends Actor
     MyWorld world = (MyWorld) getWorld();
     GreenfootImage idle = new GreenfootImage("images/Roland_Idle.png");
     GreenfootImage move = new GreenfootImage("images/Roland_Move.png");
-    GreenfootImage zelkova1 = new GreenfootImage("images/Zelkova_1.png");
-    GreenfootImage zelkova2 = new GreenfootImage("images/Zelkova_2.png");
+    GreenfootImage[] zelkova = {new GreenfootImage("images/Zelkova_1.png"), new GreenfootImage("images/Zelkova_2.png")};
     GreenfootImage currentImage = idle;
     
     boolean facingWest = true;
     Enemy enemy = MyWorld.getEnemy();
     private SimpleTimer timer = new SimpleTimer();
-    GreenfootImage[] zelkova = {zelkova1, zelkova2};
-    /**
-     * Act - do whatever the person1 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    int attackIndex = 0;
+
     public void act()
     {
         setImage(currentImage);
@@ -33,6 +29,9 @@ public class Roland extends Actor
         }
     }
     
+    /**
+     * Moves to until touching enemy
+     */
     public void move()
     {
         if(!intersects(enemy))
@@ -50,6 +49,9 @@ public class Roland extends Actor
         }
     }
     
+    /**
+     * Turns towards the enemy
+     */
     public void turnTowards()
     {
         if(enemy.getX() >= getX() && facingWest == true)
@@ -63,16 +65,18 @@ public class Roland extends Actor
         }
     }
     
+    /**
+     * Animates the attack inputted
+     */
     public void attack(GreenfootImage animationFrames[])
     {
-        for(int i = 0; i < animationFrames.length; i++)
+        //1000 millis delay
+        if(timer.millisElapsed() > 1000)
         {
-            timer.mark();
-            while(timer.millisElapsed() < 500);
-            Log.info(i);
-            currentImage = animationFrames[i];
+            currentImage = animationFrames[attackIndex];
+            attackIndex = (attackIndex + 1) % animationFrames.length;
             setImage(currentImage);
-            Log.info(currentImage.toString());
+            timer.mark();
         }
     }
 }

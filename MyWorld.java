@@ -10,6 +10,7 @@ public class MyWorld extends World
 {
     static Test test = new Test();
     static Roland roland = new Roland();
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -20,6 +21,7 @@ public class MyWorld extends World
         super(600, 400, 1);
         prepare();
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -30,6 +32,9 @@ public class MyWorld extends World
         addObject(test,150,200);
     }
     
+    /**
+     * gets the enemy
+     */
     public static Enemy getEnemy()
     {
         return test;

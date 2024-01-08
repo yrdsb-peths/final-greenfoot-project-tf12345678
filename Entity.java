@@ -10,7 +10,7 @@ public class Entity extends Actor
 {
     MyWorld world = (MyWorld) getWorld();
     boolean facingWest = true;
-    Enemy enemy = MyWorld.getEnemy();
+    Enemy enemy;
     private SimpleTimer timer = new SimpleTimer();
     int attackIndex = 0;
     
@@ -22,6 +22,11 @@ public class Entity extends Actor
     public void act()
     {
         
+    }
+    
+    public void setEnemy(Enemy enemy)
+    {
+        this.enemy = enemy;
     }
     
     /**

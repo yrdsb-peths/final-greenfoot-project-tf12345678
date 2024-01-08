@@ -15,6 +15,7 @@ public class Roland extends Entity
     public void act()
     {
         setImage(currentImage);
+        setEnemy(world.getEnemy());
         move(move);
         if(intersects(enemy))
         {

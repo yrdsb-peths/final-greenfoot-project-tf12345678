@@ -14,6 +14,6 @@ public class Test extends Enemy
      */
     public void act()
     {
-        // Add your action code here.
+        setHPLabel();
     }
 }

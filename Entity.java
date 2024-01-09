@@ -17,16 +17,36 @@ public class Entity extends Actor
     GreenfootImage currentImage;
     
     int HP;
-    Label HPLabel;
+    Label HPLabel = new Label(0, 50);
     
     public void act()
     {
         
     }
     
+    public void setHP(int hp)
+    {
+        HP = hp;
+    }
+    
+    public int getHP()
+    {
+        return HP;
+    }
+    
     public void setEnemy(Enemy enemy)
     {
         this.enemy = enemy;
+    }
+    
+    public void setHPLabel()
+    {
+        HPLabel.setValue(HP);
+    }
+    
+    public Label getHPLabel()
+    {
+        return HPLabel;
     }
     
     /**
@@ -80,13 +100,8 @@ public class Entity extends Actor
         }
     }
     
-    public void setHP(int hp)
+    public void dealDamage(int damage)
     {
-        HP = hp;
-    }
-    
-    public void reduceHP(int hp)
-    {
-        HP -= hp;
+        HP -= damage;
     }
 }

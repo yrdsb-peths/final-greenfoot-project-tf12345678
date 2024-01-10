@@ -11,10 +11,12 @@ public class Entity extends Actor
     MyWorld world = (MyWorld) getWorld();
     boolean facingWest = true;
     Enemy enemy;
-    private SimpleTimer timer = new SimpleTimer();
+    SimpleTimer timer = new SimpleTimer();
     int attackIndex = 0;
     
     GreenfootImage currentImage;
+    GreenfootImage[] currentAttack;
+    GreenfootImage[] attackReset;
     
     int HP;
     Label HPLabel = new Label(0, 50);
@@ -60,11 +62,11 @@ public class Entity extends Actor
             turnTowards();
             if(facingWest == true)
             {
-                move(-5);
+                move(-10);
             }
             else
             {
-                move(5);
+                move(10);
             }
         }
     }
@@ -88,13 +90,13 @@ public class Entity extends Actor
     /**
      * Animates the attack inputted
      */
-    public void attack(GreenfootImage animationFrames[])
+    public void attack(GreenfootImage[] animationFrames)
     {
         //1000 millis delay
         if(timer.millisElapsed() >= 1000)
         {
             currentImage = animationFrames[attackIndex];
-            attackIndex = (attackIndex + 1) % animationFrames.length;
+            attackIndex ++;
             setImage(currentImage);
             timer.mark();
         }

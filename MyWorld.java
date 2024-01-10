@@ -23,7 +23,7 @@ public class MyWorld extends World
         super(1200, 600, 1);
         test.setHP(100);
         roland.setHP(150);
-        
+        roland.reset();
         prepare();
     }
     

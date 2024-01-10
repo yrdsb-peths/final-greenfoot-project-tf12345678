@@ -25,4 +25,10 @@ public class Log
             System.out.println(input);
         }
     }
+    
+    public static void info(boolean input) {
+        if(debug) {
+            System.out.println(input);
+        }
+    }
 }

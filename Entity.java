@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.Random;
 
 /**
  * Write a description of class entity here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Timothy Fung 
+ * @version 2024-01-1
  */
 public class Entity extends Actor
 {
@@ -16,6 +17,8 @@ public class Entity extends Actor
     
     GreenfootImage currentImage;
     GreenfootImage[] currentAttack;
+    int[] currentDamage;
+    int[] currentDice;
     GreenfootImage[] attackReset;
     
     int HP;
@@ -44,6 +47,7 @@ public class Entity extends Actor
     public void setHPLabel()
     {
         HPLabel.setValue(HP);
+        HPLabel.setFillColor(Color.RED);
     }
     
     public Label getHPLabel()
@@ -87,15 +91,25 @@ public class Entity extends Actor
         }
     }
     
+    int diceRoll;
+    int upper;
+    int lower;
+    Random random = new Random();
     /**
      * Animates the attack inputted
      */
-    public void attack(GreenfootImage[] animationFrames)
+    public void attack(GreenfootImage[] animationFrames, int[] damage, int[] dice)
     {
         //1000 millis delay
         if(timer.millisElapsed() >= 1000)
         {
+            lower = dice[attackIndex * 2];
+            upper = dice[attackIndex * 2 + 1];
+            //Roll a random number between lower(inclusive) and upper(exclusive)
+            diceRoll = random.nextInt(upper - lower) + lower;
             currentImage = animationFrames[attackIndex];
+            enemy.dealDamage(damage[attackIndex] + diceRoll);
+            
             attackIndex ++;
             setImage(currentImage);
             timer.mark();

@@ -24,6 +24,7 @@ public class MyWorld extends World
         test.setHP(100);
         roland.setHP(150);
         roland.reset();
+        
         prepare();
     }
     

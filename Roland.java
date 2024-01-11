@@ -11,6 +11,8 @@ public class Roland extends Entity
     GreenfootImage idle = new GreenfootImage("images/Roland_Idle.png");
     GreenfootImage move = new GreenfootImage("images/Roland_Move.png");
     GreenfootImage[] zelkova = {new GreenfootImage("images/Zelkova_1.png"), new GreenfootImage("images/Zelkova_2.png")};
+    int[] zelkovaDamage = {50, 50};
+    int[] zelkovaDice = {5, 10, 5 ,10};
     
     boolean endTurn = false;
     
@@ -19,7 +21,6 @@ public class Roland extends Entity
         setHPLabel();
         setImage(currentImage);
         setEnemy(world.getEnemy());
-        Log.info(endTurn);
         if(endTurn == true && currentAttack != null)
         {
             move(move);
@@ -28,7 +29,7 @@ public class Roland extends Entity
                 reset();
             }else if(intersects(enemy))
             {
-                attack(currentAttack);
+                attack(currentAttack, currentDamage, currentDice);
             }
             
         }
@@ -48,6 +49,8 @@ public class Roland extends Entity
         if(Greenfoot.isKeyDown("1"))
         {
             currentAttack = zelkova;
+            currentDamage = zelkovaDamage;
+            currentDice = zelkovaDice;
         }
     }
     

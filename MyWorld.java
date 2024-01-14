@@ -24,6 +24,7 @@ public class MyWorld extends World
         test.setHP(100);
         roland.setHP(150);
         roland.reset();
+        test.reset();
         
         prepare();
     }
@@ -46,5 +47,10 @@ public class MyWorld extends World
     public static Enemy getEnemy()
     {
         return test;
+    }
+    
+    public static Roland getRoland()
+    {
+        return roland;
     }
 }

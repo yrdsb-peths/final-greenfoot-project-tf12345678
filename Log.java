@@ -31,4 +31,10 @@ public class Log
             System.out.println(input);
         }
     }
+    
+    public static void info(Entity input) {
+        if(debug) {
+            System.out.println(input);
+        }
+    }
 }

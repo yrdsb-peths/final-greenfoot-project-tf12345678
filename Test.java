@@ -9,9 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Test extends Enemy
 {
     GreenfootImage apple = new GreenfootImage("images/apple1.png");
-    GreenfootImage appleList[] = {new GreenfootImage("images/apple1.png")};
-    int appleDice[] = {20, 21, 20, 21};
-    int appleDiceType[] = {1, 1};
+    GreenfootImage[] appleList = {new GreenfootImage("images/apple1.png"), new GreenfootImage("images/apple1.png")};
+    int[] appleDice = {20, 21, 20, 21};
+    int[] appleDiceType = {1, 1};
     
     /**
      * Act - do whatever the test wants to do. This method is called whenever
@@ -21,31 +21,45 @@ public class Test extends Enemy
     {
         setHPLabel();
         enemy = MyWorld.getRoland();
-        currentAttack = appleList;
-        currentDice = appleDice;
-        currentDiceType = appleDiceType;
-        
         if(enemy.endTurn == true && currentAttack != null)
         {
             turnTowards();
-            move(apple);
+            if(attacking == false)
+            {
+                move(apple);
+            }
             if(attackIndex == currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 reset();
-            }else if(intersects(enemy))
+            }
+            else if(intersects(enemy))
+            {
+                attacking = true;
+            }
+            if(attacking == true)
             {
                 attack(currentAttack, apple, currentDice, currentDiceType);
             }
-            
         }
         else
         {
             currentImage = apple;
+            if(Greenfoot.isKeyDown("enter") && endTurn == false)
+            {
+                currentAttack = appleList;
+                currentDice = appleDice;
+                currentDiceType = appleDiceType;
+            }
         }
     }
     
     public void reset()
     {
+        Log.info("test pre-reset attack index: " + attackIndex);
+        Log.info("");
+        setLocation(250, 375);
         entityReset();
+        Log.info("test post-reset attack index: " + attackIndex);
+        Log.info("");
     }
 }

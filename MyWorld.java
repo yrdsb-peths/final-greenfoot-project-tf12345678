@@ -20,7 +20,8 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1200, 600, 1);
+        super(1200, 675, 1);
+        setBackground("images/Keter.png");
         test.setHP(100);
         roland.setHP(150);
         roland.reset();
@@ -35,8 +36,8 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        addObject(roland,950,300);
-        addObject(test,250,300);
+        addObject(roland,950,375);
+        addObject(test,250,375);
         addObject(roland.getHPLabel(), 1150, 40);
         addObject(test.getHPLabel(), 50, 40);
     }

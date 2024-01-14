@@ -14,7 +14,8 @@ public class Entity extends Actor
     Entity enemy;
     SimpleTimer timer = new SimpleTimer();
     int attackIndex;
-    boolean endTurn = false;
+    boolean endTurn;
+    boolean attacking;
     
     GreenfootImage currentImage;
     GreenfootImage[] currentAttack;
@@ -44,6 +45,7 @@ public class Entity extends Actor
         currentDiceType = diceReset;
         diceRoll = 0;
         clashLost = false;
+        attacking = false;
     }
     
     public void setHP(int hp)
@@ -150,7 +152,7 @@ public class Entity extends Actor
             }
             else if(clashLost == false)
             {
-                heal(enemy.diceRoll);
+                enemy.diceRoll = 0;
             }
             // Log.info(enemy + "clash status is" + enemy.clashLost);
             // Log.info("");

@@ -37,11 +37,19 @@ public class Roland extends Entity
         if(endTurn == true && currentAttack != null)
         {
             turnTowards();
-            move(move);
+            if(attacking == false)
+            {
+                move(move);
+            }
             if(attackIndex == currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 reset();
-            }else if(intersects(enemy))
+            }
+            else if(intersects(enemy))
+            {
+                attacking = true;
+            }
+            if(attacking == true)
             {
                 attack(currentAttack, damaged, currentDice, currentDiceType);
             }
@@ -70,8 +78,13 @@ public class Roland extends Entity
     
     public void reset()
     {
+        // Log.info("roland pre-reset attack index: " + attackIndex);
+        // Log.info("");
         endTurn = false;
         currentImage = idle;
+        setLocation(950, 375);
         entityReset();
+        // Log.info("roland post-reset attack index: " + attackIndex);
+        // Log.info("");   
     }
 }

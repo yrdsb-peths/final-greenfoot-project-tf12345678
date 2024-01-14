@@ -15,6 +15,5 @@ public class Enemy extends Entity
     public void act()
     {
         // Add your action code here.
-        HPLabel.setValue(HP);
     }
 }

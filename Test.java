@@ -55,11 +55,7 @@ public class Test extends Enemy
     
     public void reset()
     {
-        Log.info("test pre-reset attack index: " + attackIndex);
-        Log.info("");
         setLocation(250, 375);
         entityReset();
-        Log.info("test post-reset attack index: " + attackIndex);
-        Log.info("");
     }
 }

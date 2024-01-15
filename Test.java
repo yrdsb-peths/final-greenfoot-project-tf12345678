@@ -21,7 +21,7 @@ public class Test extends Enemy
     {
         setHPLabel();
         enemy = MyWorld.getRoland();
-        if(enemy.endTurn == true && currentAttack != null)
+        if(endTurn[1] == true && currentAttack != null)
         {
             turnTowards();
             if(attacking == false)
@@ -44,8 +44,9 @@ public class Test extends Enemy
         else
         {
             currentImage = apple;
-            if(Greenfoot.isKeyDown("enter") && endTurn == false)
+            if(Greenfoot.isKeyDown("enter") && endTurn[1] == false)
             {
+                endTurn[1] = true;
                 currentAttack = appleList;
                 currentDice = appleDice;
                 currentDiceType = appleDiceType;
@@ -55,6 +56,7 @@ public class Test extends Enemy
     
     public void reset()
     {
+        endTurn[1] = false;
         setLocation(250, 375);
         entityReset();
     }

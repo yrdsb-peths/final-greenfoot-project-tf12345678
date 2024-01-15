@@ -14,7 +14,7 @@ public class Entity extends Actor
     Entity enemy;
     SimpleTimer timer = new SimpleTimer();
     int attackIndex;
-    boolean endTurn;
+    static boolean[] endTurn = new boolean[2];
     boolean attacking;
     
     GreenfootImage currentImage;

@@ -57,7 +57,7 @@ public class Roland extends Entity
                 
         // }
         
-        if(endTurn[0] == true && currentAttack != null)
+        if(endTurn == true && currentAttack != null)
         {
             
             turnTowards();
@@ -79,13 +79,13 @@ public class Roland extends Entity
             }
             
         }
-        else if(endTurn[0] == false)
+        else if(endTurn == false)
         {
             currentImage = idle;
             selectedCard();
             if(Greenfoot.isKeyDown("enter"))
             {
-                endTurn[0] = true;
+                endTurn = true;
             }
         }
     }
@@ -150,7 +150,7 @@ public class Roland extends Entity
     
     public void reset()
     {
-        endTurn[0] = false;
+        endTurn = false;
         currentImage = idle;
         setLocation(950, 375);
         entityReset(); 

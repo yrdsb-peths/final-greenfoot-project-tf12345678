@@ -54,4 +54,10 @@ public class MyWorld extends World
     {
         return roland;
     }
+    
+    public static void resetAll()
+    {
+        roland.reset();
+        test.reset();
+    }
 }

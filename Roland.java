@@ -52,10 +52,6 @@ public class Roland extends Entity
         setHPLabel();
         setImage(currentImage);
         enemy = world.getEnemy();
-        // if(currentAttack != null && enemy.currentAttack != null && currentAttack.length == attackIndex && enemy.currentAttack.length == enemy.attackIndex)
-        // {
-                
-        // }
         
         if(endTurn == true && currentAttack != null)
         {
@@ -65,9 +61,9 @@ public class Roland extends Entity
             {
                 move(move);
             }
-            if(attackIndex == currentAttack.length && timer.millisElapsed() >= 1000)
+            if(attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
-                reset();
+                MyWorld.resetAll();
             }
             else if(intersects(enemy))
             {

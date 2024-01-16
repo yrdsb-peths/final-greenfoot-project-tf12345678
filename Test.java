@@ -21,16 +21,16 @@ public class Test extends Enemy
     {
         setHPLabel();
         enemy = MyWorld.getRoland();
-        if(enemy.endTurn == true && currentAttack != null)
+        if(endTurn == true && currentAttack != null)
         {
             turnTowards();
             if(attacking == false)
             {
                 move(apple);
             }
-            if(attackIndex == currentAttack.length && timer.millisElapsed() >= 1000)
+            if(attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
-                reset();
+                MyWorld.resetAll();
             }
             else if(intersects(enemy))
             {
@@ -46,6 +46,7 @@ public class Test extends Enemy
             currentImage = apple;
             if(Greenfoot.isKeyDown("enter") && endTurn == false)
             {
+                endTurn = true;
                 currentAttack = appleList;
                 currentDice = appleDice;
                 currentDiceType = appleDiceType;
@@ -55,6 +56,7 @@ public class Test extends Enemy
     
     public void reset()
     {
+        endTurn = false;
         setLocation(250, 375);
         entityReset();
     }

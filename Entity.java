@@ -111,23 +111,12 @@ public class Entity extends Actor
     public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, int[] dice, int[] diceType)
     {
         //1000 millis delay
-        if(timer.millisElapsed() >= 1000)
+        if(timer.millisElapsed() >= 1000 && attackIndex != currentAttack.length)
         {
             lower = dice[attackIndex * 2];
-            // Log.info(enemy + "attack index is" + enemy.attackIndex);
-            // Log.info("");
-            // Log.info(enemy + "lower is" + enemy.lower);
-            // Log.info("");
             upper = dice[attackIndex * 2 + 1];
-            // Log.info("");
-            // Log.info(enemy + "upper is" + enemy.upper);
-            // Log.info("");
-            //Roll a random number between lower(inclusive) and upper(exclusive)
-            // Log.info(enemy + "pre-roll is" + enemy.diceRoll);
-            // Log.info("");
+            //Roll a random number between lower (inclusive) and upper (exclusive)
             diceRoll = random.nextInt(upper - lower) + lower;
-            // Log.info(enemy + "post-roll is" + enemy.diceRoll);
-            // Log.info("");
             currentImage = animationFrames[attackIndex];
             
             if(enemy.currentAttack != null)
@@ -141,21 +130,21 @@ public class Entity extends Actor
             }
             else if(diceType[attackIndex] == 2 && enemy.currentAttack != null)
             {
+                currentImage = animationFrames[attackIndex];
                 if(diceRoll > enemy.diceRoll)
                 {
-                    heal(enemy.diceRoll);
+                    enemy.diceRoll = 0;
                 }
                 else
                 {
-                    heal(diceRoll);
+                    enemy.diceRoll -= diceRoll;
                 }
             }
             else if(clashLost == false)
             {
+                currentImage = animationFrames[attackIndex];
                 enemy.diceRoll = 0;
             }
-            // Log.info(enemy + "clash status is" + enemy.clashLost);
-            // Log.info("");
             attackIndex ++;
             setImage(currentImage);
             timer.mark();

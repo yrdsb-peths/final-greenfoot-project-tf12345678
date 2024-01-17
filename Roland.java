@@ -18,14 +18,14 @@ public class Roland extends Entity
     GreenfootImage[] oldBoys = {new GreenfootImage("images/Roland_Block.png"), new GreenfootImage("images/Roland_Blunt.png")};
     GreenfootImage[] allas = {new GreenfootImage("images/Allas_1.png"), new GreenfootImage("images/Allas_1.png")};
     GreenfootImage[] mook = {new GreenfootImage("images/Mook_1.png")};
-    GreenfootImage[] atelier = {new GreenfootImage("images/Atelier_1.png"), new GreenfootImage("images/Atelier_2.png"), new GreenfootImage("images/Atelier_3.png")};
+    GreenfootImage[] atelier = {new GreenfootImage("images/Roland_Evade.png"), new GreenfootImage("images/Atelier_1.png"), new GreenfootImage("images/Atelier_2.png"), new GreenfootImage("images/Atelier_3.png")};
     GreenfootImage[] durandal = {new GreenfootImage("images/Durandal_1.png"), new GreenfootImage("images/Durandal_1.png")};
     GreenfootImage[] crystal = {new GreenfootImage("images/Roland_Evade.png"), new GreenfootImage("images/Crystal_2.png"), new GreenfootImage("images/Crystal_2.png"), new GreenfootImage("images/Crystal_2.png")};
-    GreenfootImage[] wheels = {new GreenfootImage("images/Wheels_1.png")};
+    GreenfootImage[] wheels = {new GreenfootImage("images/Wheels_1.png"), new GreenfootImage("images/Roland_Block.png")};
     
     //Attack dice (int 1 and 2 are pairs, int 3 and 4 are pairs, etc.)
     //Each attack chooses a random number 
-    //between its respective pair (ex. attack 1 rolls between int 1 and 2)
+    //between its respective pair (ex. attack 1 rolls between int 1 and int 2)
     int[] zelkovaDice = {5, 11, 5 ,11};
     int[] rangaDice = {3, 8, 3, 8, 3, 8};
     int[] oldBoysDice = {5, 10, 4, 9};
@@ -52,10 +52,8 @@ public class Roland extends Entity
         setHPLabel();
         setImage(currentImage);
         enemy = world.getEnemy();
-        
         if(endTurn == true && currentAttack != null)
         {
-            
             turnTowards();
             if(attacking == false)
             {

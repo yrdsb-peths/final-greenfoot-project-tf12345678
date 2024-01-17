@@ -115,7 +115,7 @@ public class Entity extends Actor
         {
             lower = dice[attackIndex * 2];
             upper = dice[attackIndex * 2 + 1];
-            //Roll a random number between lower(inclusive) and upper(exclusive)
+            //Roll a random number between lower (inclusive) and upper (exclusive)
             diceRoll = random.nextInt(upper - lower) + lower;
             currentImage = animationFrames[attackIndex];
             
@@ -130,17 +130,19 @@ public class Entity extends Actor
             }
             else if(diceType[attackIndex] == 2 && enemy.currentAttack != null)
             {
+                currentImage = animationFrames[attackIndex];
                 if(diceRoll > enemy.diceRoll)
                 {
-                    heal(enemy.diceRoll);
+                    enemy.diceRoll = 0;
                 }
                 else
                 {
-                    heal(diceRoll);
+                    enemy.diceRoll -= diceRoll;
                 }
             }
             else if(clashLost == false)
             {
+                currentImage = animationFrames[attackIndex];
                 enemy.diceRoll = 0;
             }
             attackIndex ++;

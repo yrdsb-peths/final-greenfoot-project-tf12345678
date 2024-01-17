@@ -32,13 +32,15 @@ public class Entity extends Actor
     int HP;
     Label HPLabel = new Label(0, 50);
     
+    Label diceLabel = new Label(0, 50);
+    
     public void act()
     {
         
     }
     
     /**
-     * Resets instance variables
+     * Resets instance variables and moves the diceLabel out of the way
      */
     public void entityReset()
     {
@@ -49,6 +51,7 @@ public class Entity extends Actor
         diceRoll = 0;
         clashLost = false;
         attacking = false;
+        diceLabel.setLocation(0, 1000);
     }
     
     /**
@@ -82,6 +85,20 @@ public class Entity extends Actor
     public Label getHPLabel()
     {
         return HPLabel;
+    }
+    
+    public void setDiceLabel()
+    {
+        diceLabel.setValue(diceRoll);
+        diceLabel.setLocation(getX(), getY() - currentImage.getHeight() - 10);
+    }
+    
+    /**
+     * Returns the diceLabel actor
+     */
+    public Label getDiceLabel()
+    {
+        return diceLabel;
     }
     
     /**
@@ -164,6 +181,8 @@ public class Entity extends Actor
             {
                 currentImage = damageSprite;
             }
+            
+            setDiceLabel();
             attackIndex ++;
             setImage(currentImage);
             timer.mark();

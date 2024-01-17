@@ -48,7 +48,7 @@ public class Argalia extends Enemy
             {
                 move(move);
             }
-            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
+            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 2000)
             {
                 MyWorld.resetAll();
             }

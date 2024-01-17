@@ -16,6 +16,7 @@ public class TitleScreen extends World
             Greenfoot.setWorld(gameWorld);
         }
     }
+    
     /**
      * Constructor for objects of class TitleScreen.
      * 
@@ -27,6 +28,7 @@ public class TitleScreen extends World
         setBackground("images/Library.png");
         prepare();
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.

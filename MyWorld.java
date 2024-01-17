@@ -43,18 +43,24 @@ public class MyWorld extends World
     }
     
     /**
-     * Gets the enemy
+     * Returns argalia
      */
     public static Enemy getEnemy()
     {
         return argalia;
     }
     
+    /**
+     * Returns roland
+     */
     public static Roland getRoland()
     {
         return roland;
     }
     
+    /**
+     * Resets instance variables of roland and argalia
+     */
     public static void resetAll()
     {
         roland.reset();

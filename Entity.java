@@ -37,6 +37,9 @@ public class Entity extends Actor
         
     }
     
+    /**
+     * Resets instance variables
+     */
     public void entityReset()
     {
         attackIndex = 0;
@@ -48,22 +51,34 @@ public class Entity extends Actor
         attacking = false;
     }
     
+    /**
+     * Sets the HP instance variable
+     */
     public void setHP(int hp)
     {
         HP = hp;
     }
     
+    /**
+     * Returns the HP instance variable
+     */
     public int getHP()
     {
         return HP;
     }
     
+    /**
+     * Sets the value of the HPLabel actor and sets its color to red
+     */
     public void setHPLabel()
     {
         HPLabel.setValue(HP);
         HPLabel.setFillColor(Color.RED);
     }
     
+    /**
+     * Returns the HPLabel actor
+     */
     public Label getHPLabel()
     {
         return HPLabel;
@@ -106,7 +121,7 @@ public class Entity extends Actor
     }
     
     /**
-     * Animates the attack inputted
+     * Animates the attack inputted and deals/negates damage
      */
     public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, int[] dice, int[] diceType)
     {
@@ -145,6 +160,10 @@ public class Entity extends Actor
                 currentImage = animationFrames[attackIndex];
                 enemy.diceRoll = 0;
             }
+            else
+            {
+                currentImage = damageSprite;
+            }
             attackIndex ++;
             setImage(currentImage);
             timer.mark();
@@ -152,8 +171,8 @@ public class Entity extends Actor
     }
     
     /**
-     * Makes Entity deal zero damage if it rolls the same as the enemy Entity, 
-     * Entity deals zero damage and switches to its damaged sprite
+     * Sets the clashLost boolean depending on whether the entity rolled 
+     * >, >= or < than the opposing entity
      */
     public void clash(GreenfootImage damageSprite)
     {
@@ -163,20 +182,17 @@ public class Entity extends Actor
         }else if(enemy.diceRoll > diceRoll)
         {
             clashLost = true;
-            currentImage = damageSprite;
         }else
         {
             clashLost = false;
         }
     }
     
+    /**
+     * Subtracts the HP variable by the amount of damage dealt
+     */
     public void dealDamage(int damage)
     {
         HP -= damage;
-    }
-    
-    public void heal(int hp)
-    {
-        HP += hp;
     }
 }

@@ -59,7 +59,7 @@ public class Roland extends Entity
             {
                 move(move);
             }
-            if(attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
+            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 MyWorld.resetAll();
             }
@@ -77,7 +77,7 @@ public class Roland extends Entity
         {
             currentImage = idle;
             selectedCard();
-            if(Greenfoot.isKeyDown("enter"))
+            if(Greenfoot.isKeyDown("enter") && currentAttack != null)
             {
                 endTurn = true;
             }
@@ -142,6 +142,9 @@ public class Roland extends Entity
         }
     }
     
+    /**
+     * Resets instance variables
+     */
     public void reset()
     {
         endTurn = false;

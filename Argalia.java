@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Timothy Fung
  * @version 2024-01-16
  */
-public class Argalia extends Enemy
+public class Argalia extends Entity
 {
     GreenfootImage idle = new GreenfootImage("images/Argalia_Idle.png");
     GreenfootImage move = new GreenfootImage("images/Argalia_Move.png");

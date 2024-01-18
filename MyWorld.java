@@ -62,7 +62,7 @@ public class MyWorld extends World
     /**
      * Returns argalia
      */
-    public static Enemy getEnemy()
+    public static Argalia getEnemy()
     {
         return argalia;
     }

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * The world the player and enemy fight in.
  * 
  * @author Timothy Fung
  * @version 2023-12-11
@@ -32,6 +32,9 @@ public class MyWorld extends World
         prepare();
     }
     
+    /**
+     * Creates and prints the game over text
+     */
     public void gameOver()
     {
         Label gameOverLabel = new Label("Game Over", 300);
@@ -59,7 +62,7 @@ public class MyWorld extends World
     /**
      * Returns argalia
      */
-    public static Enemy getEnemy()
+    public static Argalia getEnemy()
     {
         return argalia;
     }

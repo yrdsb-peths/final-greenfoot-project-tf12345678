@@ -57,45 +57,51 @@ public class Roland extends Entity
     int[] crystalDiceType = {3, 1, 1, 1};
     int[] wheelsDiceType = {1, 2};
     
+    /**
+     * Checks if player has selected card until they press enter
+     * Afterwards, Actor will calculate the dice roll and move until it meets the enemy
+     * It then uses its dice on the enemy.
+     */
     public void act()
     {
         setHPLabel();
         setImage(currentImage);
         enemy = world.getEnemy();
-        // calculateAttack(currentDice, 1);
+        
+        // calculates the dice roll in advance so that both entities clash properly
         if(currentAttack != null)
         {
-            calculateAttack(currentDice, 1);
+            calculateAttack(currentDice, 0);
         }
+        
         if(endTurn == true && currentAttack != null)
         {
             turnTowards();
             if(attacking == false)
             {
                 move(move);
-                // if(diceRoll == 0)
-                // {
-                    // calculateAttack(currentDice, 1);
-                // }
             }
+            
+            // prevents roland from keeping the dice roll if he finishes attacking before the enemy
             if(attackIndex == currentAttack.length)
             {
-                // diceLabel.setLocation(0, 1000);
                 diceRoll = 0;
             }
+            
+            // resets roland and enemy when both are finished attacking
             if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 MyWorld.resetAll();
             }
             else if(intersects(enemy))
             {
+                // prevents argalia from moving while attacking due do differences in image size
                 attacking = true;
             }
+            
             if(attacking == true)
             {
-                // calculateAttack(currentDice, 1);
                 attack(currentAttack, damaged, currentCard, currentDiceType);
-
             }
         }
         else if(endTurn == false)
@@ -113,6 +119,9 @@ public class Roland extends Entity
         }
     }
     
+    /**
+     * Sets the current variables based on what move the player has selected
+     */
     public void selectedCard()
     {
         if(Greenfoot.isKeyDown("1"))

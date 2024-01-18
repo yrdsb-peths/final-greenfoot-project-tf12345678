@@ -32,6 +32,9 @@ public class MyWorld extends World
         prepare();
     }
     
+    /**
+     * Creates and prints the game over text
+     */
     public void gameOver()
     {
         Label gameOverLabel = new Label("Game Over", 300);

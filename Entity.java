@@ -37,11 +37,6 @@ public class Entity extends Actor
     
     Card attackCard = new Card();
     
-    public void act()
-    {
-        
-    }
-    
     /**
      * Resets instance variables and moves the diceLabel out of the way
      */
@@ -91,6 +86,9 @@ public class Entity extends Actor
         return HPLabel;
     }
     
+    /**
+     * Sets the value and location of the diceLabel actor
+     */
     public void setDiceLabel(int label)
     {
         diceLabel.setValue(label);
@@ -105,6 +103,9 @@ public class Entity extends Actor
         return diceLabel;
     }
     
+    /**
+     * Returns the attackCard actor
+     */
     public Card getAttackCard()
     {
         return attackCard;
@@ -147,7 +148,8 @@ public class Entity extends Actor
     }
     
     /**
-     * Animates the attack inputted and deals/negates damage
+     * Animates the attack inputted and deals/negates damage based on dice type
+     * and whether or not they won the clash
      */
     public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, GreenfootImage card, int[] diceType)
     {
@@ -159,10 +161,13 @@ public class Entity extends Actor
             {
                 clash();
             }
+            
+            // if dice type is attack
             if(diceType[attackIndex] == 1 && clashLost == false)
             {
                 enemy.dealDamage(diceRoll);
             }
+            // if dice type is block
             else if(diceType[attackIndex] == 2 && enemy.currentAttack != null)
             {
                 currentImage = animationFrames[attackIndex];
@@ -192,14 +197,17 @@ public class Entity extends Actor
         }
     }
     
-    public void calculateAttack(int[] dice, int multiplier)
+    /**
+     * Calculates the dice roll, adding a value based on the modifier
+     */
+    public void calculateAttack(int[] dice, int modifier)
     {
         if(attackIndex != currentAttack.length)
         {
             lower = dice[attackIndex * 2];
             upper = dice[attackIndex * 2 + 1];
             //Roll a random number between lower (inclusive) and upper (exclusive)
-            diceRoll = (random.nextInt(upper - lower) + lower) * multiplier;
+            diceRoll = (random.nextInt(upper - lower) + lower) + modifier;
         }
         
     }

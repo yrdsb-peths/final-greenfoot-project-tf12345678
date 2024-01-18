@@ -10,6 +10,9 @@ public class TitleScreen extends World
 {
     static GreenfootSound title = new GreenfootSound("sounds/title.wav");
     
+    /**
+     * Checks if the player has pressed enter, switches to the game world if so
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("enter"))

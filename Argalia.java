@@ -42,43 +42,50 @@ public class Argalia extends Enemy
     
     int round = 0;
     
+    /**
+     * Randomly selects a card until the player presses enter
+     * Afterwards, Actor will calculate the dice roll and move until it meets the enemy
+     * It then uses its dice on the enemy.
+     */
     public void act()
     {
         setHPLabel();
         setImage(currentImage);
         enemy = MyWorld.getRoland();
-        // calculateAttack(currentDice, 1);
+        
+        // calculates the dice roll in advance so that both entities clash properly
         if(currentAttack != null)
         {
-            calculateAttack(currentDice, round);
+            calculateAttack(currentDice, round - 1);
         }
+        
         if(endTurn == true && currentAttack != null)
         {
             turnTowards();
             if(attacking == false)
             {
                 move(move);
-                // if(diceRoll == 0)
-                // {
-                    // calculateAttack(currentDice, round);
-                // }
             }
+            
+            // prevents argalia from keeping the dice roll if he finishes attacking before the enemy
             if(attackIndex == currentAttack.length)
             {
-                // diceLabel.setLocation(0, 1000);
                 diceRoll = 0;
             }
+            
+            // resets argalia and enemy when both are finished attacking
             if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 MyWorld.resetAll();
             }
             else if(intersects(enemy))
             {
+                // prevents argalia from moving while attacking due do differences in image size
                 attacking = true;
             }
+            
             if(attacking == true)
             {
-                // calculateAttack(currentDice, round);
                 attack(currentAttack, damaged, currentCard, currentDiceType);
             }
         }
@@ -124,11 +131,17 @@ public class Argalia extends Enemy
         }
     }
     
+    /**
+     * Sets the round variable
+     */
     public void setRound()
     {
         round = 1;
     }
     
+    /**
+     * Gets the round variable
+     */
     public int getRound()
     {
         return round;

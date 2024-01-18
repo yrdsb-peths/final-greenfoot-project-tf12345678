@@ -148,22 +148,13 @@ public class Entity extends Actor
     /**
      * Animates the attack inputted and deals/negates damage
      */
-    public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, GreenfootImage card, int[] dice, int[] diceType)
+    public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, GreenfootImage card, int[] diceType)
     {
         //1000 millis delay
         if(timer.millisElapsed() >= 1000 && attackIndex != currentAttack.length)
         {
-            lower = dice[attackIndex * 2];
-            upper = dice[attackIndex * 2 + 1];
-            //Roll a random number between lower (inclusive) and upper (exclusive)
-            diceRoll = random.nextInt(upper - lower) + lower;
+            
             currentImage = animationFrames[attackIndex];
-            
-            if(enemy.currentAttack != null)
-            {
-                clash(damageSprite);
-            }
-            
             if(diceType[attackIndex] == 1 && clashLost == false)
             {
                 enemy.dealDamage(diceRoll);
@@ -197,11 +188,25 @@ public class Entity extends Actor
         }
     }
     
+    public void calculateAttack(int[] dice)
+    {
+        lower = dice[attackIndex * 2];
+        upper = dice[attackIndex * 2 + 1];
+        //Roll a random number between lower (inclusive) and upper (exclusive)
+        diceRoll = random.nextInt(upper - lower) + lower;
+        
+        
+        if(enemy.currentAttack != null)
+        {
+            clash();
+        }
+    }
+    
     /**
      * Sets the clashLost boolean depending on whether the entity rolled 
      * >, >= or < than the opposing entity
      */
-    public void clash(GreenfootImage damageSprite)
+    public void clash()
     {
         if(enemy.diceRoll == diceRoll)
         {

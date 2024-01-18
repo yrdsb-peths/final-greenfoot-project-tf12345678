@@ -68,6 +68,11 @@ public class Roland extends Entity
             if(attacking == false)
             {
                 move(move);
+                if(diceRoll == 0)
+                {
+                    Log.info(2323);
+                    calculateAttack(currentDice);
+                }
             }
             if(attackIndex == currentAttack.length)
             {
@@ -83,7 +88,7 @@ public class Roland extends Entity
             }
             if(attacking == true)
             {
-                attack(currentAttack, damaged, currentCard, currentDice, currentDiceType);
+                attack(currentAttack, damaged, currentCard, currentDiceType);
             }
         }
         else if(endTurn == false)

@@ -51,6 +51,10 @@ public class Argalia extends Enemy
             if(attacking == false)
             {
                 move(move);
+                if(diceRoll == 0)
+                {
+                    calculateAttack(currentDice);
+                }
             }
             if(attackIndex == currentAttack.length)
             {
@@ -66,7 +70,7 @@ public class Argalia extends Enemy
             }
             if(attacking == true)
             {
-                attack(currentAttack, damaged, currentCard, currentDice, currentDiceType);
+                attack(currentAttack, damaged, currentCard, currentDiceType);
             }
         }
         else

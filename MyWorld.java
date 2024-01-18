@@ -8,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    GreenfootSound game = new GreenfootSound("sounds/game.wav");
+    
     static Argalia argalia = new Argalia();
     static Roland roland = new Roland();
-    
-    
     
     /**
      * Constructor for objects of class MyWorld.
@@ -26,6 +26,8 @@ public class MyWorld extends World
         roland.setHP(150);
         roland.reset();
         argalia.reset();
+        TitleScreen.title.stop();
+        game.play();
         
         prepare();
     }

@@ -18,6 +18,7 @@ public class Entity extends Actor
     boolean attacking;
     
     GreenfootImage currentImage;
+    GreenfootImage currentCard;
     GreenfootImage[] currentAttack;
     GreenfootImage[] attackReset;
     int[] currentDice;
@@ -33,6 +34,8 @@ public class Entity extends Actor
     Label HPLabel = new Label(0, 50);
     
     Label diceLabel = new Label(0, 50);
+    
+    Card attackCard = new Card();
     
     public void act()
     {
@@ -87,18 +90,23 @@ public class Entity extends Actor
         return HPLabel;
     }
     
-    public void setDiceLabel()
+    public void setDiceLabel(int label)
     {
-        diceLabel.setValue(diceRoll);
+        diceLabel.setValue(label);
         diceLabel.setLocation(getX(), getY() - currentImage.getHeight() - 10);
     }
-    
+
     /**
      * Returns the diceLabel actor
      */
     public Label getDiceLabel()
     {
         return diceLabel;
+    }
+    
+    public Card getAttackCard()
+    {
+        return attackCard;
     }
     
     /**
@@ -140,7 +148,7 @@ public class Entity extends Actor
     /**
      * Animates the attack inputted and deals/negates damage
      */
-    public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, int[] dice, int[] diceType)
+    public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, GreenfootImage card, int[] dice, int[] diceType)
     {
         //1000 millis delay
         if(timer.millisElapsed() >= 1000 && attackIndex != currentAttack.length)
@@ -182,7 +190,7 @@ public class Entity extends Actor
                 currentImage = damageSprite;
             }
             
-            setDiceLabel();
+            setDiceLabel(diceRoll);
             attackIndex ++;
             setImage(currentImage);
             timer.mark();

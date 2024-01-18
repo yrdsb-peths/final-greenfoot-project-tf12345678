@@ -23,6 +23,16 @@ public class Roland extends Entity
     GreenfootImage[] crystal = {new GreenfootImage("images/Roland_Evade.png"), new GreenfootImage("images/Crystal_2.png"), new GreenfootImage("images/Crystal_2.png"), new GreenfootImage("images/Crystal_2.png")};
     GreenfootImage[] wheels = {new GreenfootImage("images/Wheels_1.png"), new GreenfootImage("images/Roland_Block.png")};
     
+    GreenfootImage zelkovaCard = new GreenfootImage("images/Zelkova_Workshop.png");
+    GreenfootImage rangaCard = new GreenfootImage("images/Ranga_Workshop.png");
+    GreenfootImage oldBoysCard = new GreenfootImage("images/Old_Boys_Workshop.png");
+    GreenfootImage allasCard = new GreenfootImage("images/Allas_Workshop.png");
+    GreenfootImage mookCard = new GreenfootImage("images/Mook_Workshop.png");
+    GreenfootImage atelierCard = new GreenfootImage("images/Atelier_Logic.png");
+    GreenfootImage durandalCard = new GreenfootImage("images/Durandal.png");
+    GreenfootImage crystalCard = new GreenfootImage("images/Crystal_Atelier.png");
+    GreenfootImage wheelsCard = new GreenfootImage("images/Wheels_Industry.png");
+    
     //Attack dice (int 1 and 2 are pairs, int 3 and 4 are pairs, etc.)
     //Each attack chooses a random number 
     //between its respective pair (ex. attack 1 rolls between int 1 and int 2)
@@ -63,7 +73,7 @@ public class Roland extends Entity
             {
                 diceLabel.setLocation(0, 1000);
             }
-            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 2000)
+            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 MyWorld.resetAll();
             }
@@ -73,7 +83,7 @@ public class Roland extends Entity
             }
             if(attacking == true)
             {
-                attack(currentAttack, damaged, currentDice, currentDiceType);
+                attack(currentAttack, damaged, currentCard, currentDice, currentDiceType);
             }
         }
         else if(endTurn == false)
@@ -92,6 +102,7 @@ public class Roland extends Entity
         if(Greenfoot.isKeyDown("1"))
         {
             currentAttack = zelkova;
+            currentCard = zelkovaCard;
             currentDice = zelkovaDice;
             currentDiceType = zelkovaDiceType;
         }
@@ -99,49 +110,62 @@ public class Roland extends Entity
         {
             currentAttack = ranga;
             currentDice = rangaDice;
+            currentCard = rangaCard;
             currentDiceType = rangaDiceType;
         }
         else if(Greenfoot.isKeyDown("3"))
         {
             currentAttack = oldBoys;
+            currentCard = oldBoysCard;
             currentDice = oldBoysDice;
             currentDiceType = oldBoysDiceType;
         }
         else if(Greenfoot.isKeyDown("4"))
         {
             currentAttack = allas;
+            currentCard = allasCard;
             currentDice = allasDice;
             currentDiceType = allasDiceType;
         }
         else if(Greenfoot.isKeyDown("5"))
         {
             currentAttack = mook;
+            currentCard = mookCard;
             currentDice = mookDice;
             currentDiceType = mookDiceType;
         }
         else if(Greenfoot.isKeyDown("6"))
         {
             currentAttack = atelier;
+            currentCard = atelierCard;
             currentDice = atelierDice;
             currentDiceType = atelierDiceType;
         }
         else if(Greenfoot.isKeyDown("7"))
         {
             currentAttack = durandal;
+            currentCard = durandalCard;
             currentDice = durandalDice;
             currentDiceType = durandalDiceType;
         }
         else if(Greenfoot.isKeyDown("8"))
         {
             currentAttack = crystal;
+            currentCard = crystalCard;
             currentDice = crystalDice;
             currentDiceType = crystalDiceType;
         }
         else if(Greenfoot.isKeyDown("9"))
         {
             currentAttack = wheels;
+            currentCard = wheelsCard;
             currentDice = wheelsDice;
             currentDiceType = wheelsDiceType;
+        }
+        if(currentCard != null)
+        {
+            attackCard.setImage(currentCard);
+            attackCard.setLocation(1110, 145);
         }
     }
     

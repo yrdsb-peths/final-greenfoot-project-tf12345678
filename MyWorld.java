@@ -42,6 +42,8 @@ public class MyWorld extends World
         addObject(argalia.getHPLabel(), 50, 40);
         addObject(roland.getDiceLabel(), 0, 1000);
         addObject(argalia.getDiceLabel(), 0, 1000);
+        addObject(roland.getAttackCard(), 0, 0);
+        addObject(argalia.getAttackCard(), 0, 0);
     }
     
     /**

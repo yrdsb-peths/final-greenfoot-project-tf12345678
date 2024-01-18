@@ -21,6 +21,10 @@ public class Argalia extends Enemy
     GreenfootImage[] largo = {block, blunt, slash, slash};
     GreenfootImage[] trails = {slash, block, blunt, block};
     
+    GreenfootImage dissonanceCard = new GreenfootImage("images/Dissonance.png");
+    GreenfootImage largoCard = new GreenfootImage("images/Largo.png");
+    GreenfootImage trailsCard = new GreenfootImage("images/Trails_of_Blue.png");
+    
     //Attack dice (int 1 and 2 are pairs, int 3 and 4 are pairs, etc.)
     //Each attack chooses a random number 
     //between its respective pair (ex. attack 1 rolls between int 1 and int 2)
@@ -52,7 +56,7 @@ public class Argalia extends Enemy
             {
                 diceLabel.setLocation(0, 1000);
             }
-            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 2000)
+            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 MyWorld.resetAll();
             }
@@ -62,34 +66,42 @@ public class Argalia extends Enemy
             }
             if(attacking == true)
             {
-                attack(currentAttack, damaged, currentDice, currentDiceType);
+                attack(currentAttack, damaged, currentCard, currentDice, currentDiceType);
             }
         }
         else
         {
             currentImage = idle;
-            if(Greenfoot.isKeyDown("enter") && enemy.currentAttack != null)
+            if(randomAttack == 0)
             {
-                endTurn = true;
                 randomAttack = random.nextInt(4 - 1) + 1;
                 if(randomAttack == 1)
                 {
                     currentAttack = dissonance;
+                    currentCard = dissonanceCard;
                     currentDice = dissonanceDice;
                     currentDiceType = dissonanceDiceType;
                 }
                 else if(randomAttack == 2)
                 {
                     currentAttack = largo;
+                    currentCard = largoCard;
                     currentDice = largoDice;
                     currentDiceType = largoDiceType;
                 }
                 else
                 {
                     currentAttack = trails;
+                    currentCard = trailsCard;
                     currentDice = trailsDice;
                     currentDiceType = trailsDiceType;
                 }
+                attackCard.setImage(currentCard);
+                attackCard.setLocation(90, 145);
+            }
+            if(Greenfoot.isKeyDown("enter") && enemy.currentAttack != null)
+            {
+                endTurn = true;
             }
         }
     }
@@ -101,6 +113,7 @@ public class Argalia extends Enemy
     {
         endTurn = false;
         facingWest = false;
+        randomAttack = 0;
         currentImage = idle;
         setLocation(250, 375);
         entityReset();

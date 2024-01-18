@@ -75,6 +75,10 @@ public class Argalia extends Enemy
         }
         else
         {
+            if(HP <= 0)
+            {
+                world.gameWin();
+            }
             currentImage = idle;
             if(randomAttack == 0)
             {

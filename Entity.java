@@ -55,6 +55,7 @@ public class Entity extends Actor
         clashLost = false;
         attacking = false;
         diceLabel.setLocation(0, 1000);
+        world = (MyWorld) getWorld();
     }
     
     /**

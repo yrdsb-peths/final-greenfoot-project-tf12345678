@@ -93,6 +93,10 @@ public class Roland extends Entity
         }
         else if(endTurn == false)
         {
+            if(HP <= 0)
+            {
+                world.gameLose();
+            }
             currentImage = idle;
             selectedCard();
             if(Greenfoot.isKeyDown("enter") && currentAttack != null)
@@ -182,6 +186,6 @@ public class Roland extends Entity
         endTurn = false;
         currentImage = idle;
         setLocation(950, 375);
-        entityReset(); 
+        entityReset();
     }
 }

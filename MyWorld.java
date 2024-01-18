@@ -30,6 +30,22 @@ public class MyWorld extends World
         prepare();
     }
     
+    public void gameWin()
+    {
+        Label gameOverLabel = new Label("You win!", 300);
+        addObject(gameOverLabel, 600, 200);
+        Label tryAgainLabel = new Label("You took " + (150 - roland.getHP()) + " damage.", 100);
+        addObject(tryAgainLabel, 600, 400);
+    }
+    
+    public void gameLose()
+    {
+        Label gameOverLabel = new Label("You lose!", 300);
+        addObject(gameOverLabel, 600, 200);
+        Label tryAgainLabel = new Label("Try again.", 100);
+        addObject(tryAgainLabel, 600, 400);
+    }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.

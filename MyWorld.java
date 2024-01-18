@@ -8,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    GreenfootSound game = new GreenfootSound("sounds/game.wav");
+    
     static Argalia argalia = new Argalia();
     static Roland roland = new Roland();
-    
-    
     
     /**
      * Constructor for objects of class MyWorld.
@@ -25,9 +25,19 @@ public class MyWorld extends World
         argalia.setHP(100);
         roland.setHP(150);
         roland.reset();
+        argalia.setRound();
         argalia.reset();
-        
+        TitleScreen.title.stop();
+        game.playLoop();
         prepare();
+    }
+    
+    public void gameOver()
+    {
+        Label gameOverLabel = new Label("Game Over", 300);
+        addObject(gameOverLabel, 600, 200);
+        Label tryAgainLabel = new Label("You beat Argalia " + (argalia.getRound() - 1) + " times", 100);
+        addObject(tryAgainLabel, 600, 400);
     }
     
     /**
@@ -40,21 +50,31 @@ public class MyWorld extends World
         addObject(argalia,250,375);
         addObject(roland.getHPLabel(), 1150, 40);
         addObject(argalia.getHPLabel(), 50, 40);
+        addObject(roland.getDiceLabel(), 0, 1000);
+        addObject(argalia.getDiceLabel(), 0, 1000);
+        addObject(roland.getAttackCard(), 0, 0);
+        addObject(argalia.getAttackCard(), 0, 0);
     }
     
     /**
-     * Gets the enemy
+     * Returns argalia
      */
     public static Enemy getEnemy()
     {
         return argalia;
     }
     
+    /**
+     * Returns roland
+     */
     public static Roland getRoland()
     {
         return roland;
     }
     
+    /**
+     * Resets instance variables of roland and argalia
+     */
     public static void resetAll()
     {
         roland.reset();

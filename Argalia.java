@@ -16,37 +16,59 @@ public class Argalia extends Enemy
     GreenfootImage blunt = new GreenfootImage("images/Argalia_Blunt.png");
     GreenfootImage slash = new GreenfootImage("images/Argalia_Slash.png");
     
-    GreenfootImage[] scout = {evade, blunt, block, block};
-    GreenfootImage[] preludio = {slash, blunt, block, block};
-    GreenfootImage[] trails = {slash, block, block, block};
+    //Attack frames
+    GreenfootImage[] dissonance = {evade, blunt, block, block};
+    GreenfootImage[] largo = {block, blunt, slash, slash};
+    GreenfootImage[] trails = {slash, block, blunt, block};
     
-    int[] scoutDice = {5, 9, 4 ,7, 5, 9, 5, 8};
-    int[] preludioDice = {4, 7, 3, 6, 5, 8, 5, 8};
+    GreenfootImage dissonanceCard = new GreenfootImage("images/Dissonance.png");
+    GreenfootImage largoCard = new GreenfootImage("images/Largo.png");
+    GreenfootImage trailsCard = new GreenfootImage("images/Trails_of_Blue.png");
+    
+    //Attack dice (int 1 and 2 are pairs, int 3 and 4 are pairs, etc.)
+    //Each attack chooses a random number 
+    //between its respective pair (ex. attack 1 rolls between int 1 and int 2)
+    int[] dissonanceDice = {5, 9, 4 ,7, 5, 9, 5, 8};
+    int[] largoDice = {4, 7, 3, 6, 5, 8, 5, 8};
     int[] trailsDice = {8, 14, 5, 8, 5, 8, 5, 8};
     
-    int[] scoutDiceType = {3, 1, 2, 2};
-    int[] preludioDiceType = {1, 1, 2, 2};
-    int[] trailsDiceType = {1, 2, 2, 2};
+    //Attack dice types (1 is attack, 2 is block, 3 is evade)
+    int[] dissonanceDiceType = {3, 1, 2, 2};
+    int[] largoDiceType = {2, 1, 1, 1};
+    int[] trailsDiceType = {1, 2, 1, 2};
     
+    //Variable for deciding which attack is chosen
     int randomAttack;
     
-    /**
-     * Act - do whatever the test wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    int round = 0;
+    
     public void act()
     {
         setHPLabel();
         setImage(currentImage);
         enemy = MyWorld.getRoland();
+        // calculateAttack(currentDice, 1);
+        if(currentAttack != null)
+        {
+            calculateAttack(currentDice, round);
+        }
         if(endTurn == true && currentAttack != null)
         {
             turnTowards();
             if(attacking == false)
             {
                 move(move);
+                // if(diceRoll == 0)
+                // {
+                    // calculateAttack(currentDice, round);
+                // }
             }
-            if(attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
+            if(attackIndex == currentAttack.length)
+            {
+                // diceLabel.setLocation(0, 1000);
+                diceRoll = 0;
+            }
+            if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
                 MyWorld.resetAll();
             }
@@ -56,42 +78,71 @@ public class Argalia extends Enemy
             }
             if(attacking == true)
             {
-                attack(currentAttack, damaged, currentDice, currentDiceType);
+                // calculateAttack(currentDice, round);
+                attack(currentAttack, damaged, currentCard, currentDiceType);
             }
         }
         else
         {
-            currentImage = idle;
-            if(Greenfoot.isKeyDown("enter") && endTurn == false)
+            if(HP <= 0)
             {
-                endTurn = true;
+                round ++;
+                HP = 100 + 50 * round;
+            }
+            currentImage = idle;
+            if(randomAttack == 0)
+            {
                 randomAttack = random.nextInt(4 - 1) + 1;
                 if(randomAttack == 1)
                 {
-                    currentAttack = scout;
-                    currentDice = scoutDice;
-                    currentDiceType = scoutDiceType;
+                    currentAttack = dissonance;
+                    currentCard = dissonanceCard;
+                    currentDice = dissonanceDice;
+                    currentDiceType = dissonanceDiceType;
                 }
                 else if(randomAttack == 2)
                 {
-                    currentAttack = preludio;
-                    currentDice = preludioDice;
-                    currentDiceType = preludioDiceType;
+                    currentAttack = largo;
+                    currentCard = largoCard;
+                    currentDice = largoDice;
+                    currentDiceType = largoDiceType;
                 }
                 else
                 {
                     currentAttack = trails;
+                    currentCard = trailsCard;
                     currentDice = trailsDice;
                     currentDiceType = trailsDiceType;
                 }
+                attackCard.setImage(currentCard);
+                attackCard.setLocation(90, 145);
+            }
+            if(Greenfoot.isKeyDown("enter") && enemy.currentAttack != null)
+            {
+                endTurn = true;
             }
         }
     }
     
+    public void setRound()
+    {
+        round = 1;
+    }
+    
+    public int getRound()
+    {
+        return round;
+    }
+    
+    /**
+     * Resets instance variables
+     */
     public void reset()
     {
         endTurn = false;
         facingWest = false;
+        randomAttack = 0;
+        currentImage = idle;
         setLocation(250, 375);
         entityReset();
     }

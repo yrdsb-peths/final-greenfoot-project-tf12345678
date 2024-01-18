@@ -18,6 +18,7 @@ public class Entity extends Actor
     boolean attacking;
     
     GreenfootImage currentImage;
+    GreenfootImage currentCard;
     GreenfootImage[] currentAttack;
     GreenfootImage[] attackReset;
     int[] currentDice;
@@ -32,11 +33,18 @@ public class Entity extends Actor
     int HP;
     Label HPLabel = new Label(0, 50);
     
+    Label diceLabel = new Label(0, 50);
+    
+    Card attackCard = new Card();
+    
     public void act()
     {
         
     }
     
+    /**
+     * Resets instance variables and moves the diceLabel out of the way
+     */
     public void entityReset()
     {
         attackIndex = 0;
@@ -46,27 +54,60 @@ public class Entity extends Actor
         diceRoll = 0;
         clashLost = false;
         attacking = false;
+        diceLabel.setLocation(0, 1000);
+        world = (MyWorld) getWorld();
     }
     
+    /**
+     * Sets the HP instance variable
+     */
     public void setHP(int hp)
     {
         HP = hp;
     }
     
+    /**
+     * Returns the HP instance variable
+     */
     public int getHP()
     {
         return HP;
     }
     
+    /**
+     * Sets the value of the HPLabel actor and sets its color to red
+     */
     public void setHPLabel()
     {
         HPLabel.setValue(HP);
         HPLabel.setFillColor(Color.RED);
     }
     
+    /**
+     * Returns the HPLabel actor
+     */
     public Label getHPLabel()
     {
         return HPLabel;
+    }
+    
+    public void setDiceLabel(int label)
+    {
+        diceLabel.setValue(label);
+        diceLabel.setLocation(getX(), getY() - currentImage.getHeight() - 10);
+    }
+
+    /**
+     * Returns the diceLabel actor
+     */
+    public Label getDiceLabel()
+    {
+        return diceLabel;
+    }
+    
+    public Card getAttackCard()
+    {
+        return attackCard;
     }
     
     /**
@@ -106,24 +147,18 @@ public class Entity extends Actor
     }
     
     /**
-     * Animates the attack inputted
+     * Animates the attack inputted and deals/negates damage
      */
-    public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, int[] dice, int[] diceType)
+    public void attack(GreenfootImage[] animationFrames, GreenfootImage damageSprite, GreenfootImage card, int[] diceType)
     {
         //1000 millis delay
         if(timer.millisElapsed() >= 1000 && attackIndex != currentAttack.length)
         {
-            lower = dice[attackIndex * 2];
-            upper = dice[attackIndex * 2 + 1];
-            //Roll a random number between lower (inclusive) and upper (exclusive)
-            diceRoll = random.nextInt(upper - lower) + lower;
             currentImage = animationFrames[attackIndex];
-            
             if(enemy.currentAttack != null)
             {
-                clash(damageSprite);
+                clash();
             }
-            
             if(diceType[attackIndex] == 1 && clashLost == false)
             {
                 enemy.dealDamage(diceRoll);
@@ -145,17 +180,35 @@ public class Entity extends Actor
                 currentImage = animationFrames[attackIndex];
                 enemy.diceRoll = 0;
             }
+            else
+            {
+                currentImage = damageSprite;
+            }
+            
+            setDiceLabel(diceRoll);
             attackIndex ++;
             setImage(currentImage);
             timer.mark();
         }
     }
     
+    public void calculateAttack(int[] dice, int multiplier)
+    {
+        if(attackIndex != currentAttack.length)
+        {
+            lower = dice[attackIndex * 2];
+            upper = dice[attackIndex * 2 + 1];
+            //Roll a random number between lower (inclusive) and upper (exclusive)
+            diceRoll = (random.nextInt(upper - lower) + lower) * multiplier;
+        }
+        
+    }
+    
     /**
-     * Makes Entity deal zero damage if it rolls the same as the enemy Entity, 
-     * Entity deals zero damage and switches to its damaged sprite
+     * Sets the clashLost boolean depending on whether the entity rolled 
+     * >, >= or < than the opposing entity
      */
-    public void clash(GreenfootImage damageSprite)
+    public void clash()
     {
         if(enemy.diceRoll == diceRoll)
         {
@@ -163,20 +216,17 @@ public class Entity extends Actor
         }else if(enemy.diceRoll > diceRoll)
         {
             clashLost = true;
-            currentImage = damageSprite;
         }else
         {
             clashLost = false;
         }
     }
     
+    /**
+     * Subtracts the HP variable by the amount of damage dealt
+     */
     public void dealDamage(int damage)
     {
         HP -= damage;
-    }
-    
-    public void heal(int hp)
-    {
-        HP += hp;
     }
 }

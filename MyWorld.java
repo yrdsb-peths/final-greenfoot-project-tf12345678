@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * The world the player and enemy fight in.
  * 
  * @author Timothy Fung
  * @version 2023-12-11

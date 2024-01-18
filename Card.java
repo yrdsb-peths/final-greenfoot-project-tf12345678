@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Card here.
+ * Attack card that displays what attack the entity is using
  * 
  * @author Timothy Fung
  * @version 2024-01-17

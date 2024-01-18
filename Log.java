@@ -1,5 +1,5 @@
 /**
- * Prints the input given into the terminal window
+ * Prints the input given into the terminal window.
  * 
  * @author Timothy Fung
  * @version 2023-12-18

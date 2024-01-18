@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Random;
 
 /**
- * Write a description of class entity here.
+ * Superclass of player characters and enemies.
  * 
  * @author Timothy Fung 
  * @version 2024-01-1

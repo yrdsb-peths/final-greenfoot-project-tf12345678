@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class test here.
+ * The enemy.
  * 
  * @author Timothy Fung
  * @version 2024-01-16

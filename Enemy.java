@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy here.
+ * Superclass of Argalia
  * 
  * @author Timothy Fung
  * @version 2023-12-12

@@ -102,7 +102,7 @@ public class Roland extends Entity
         {
             if(HP <= 0)
             {
-                world.gameLose();
+                world.gameOver();
             }
             currentImage = idle;
             selectedCard();

@@ -129,6 +129,11 @@ public class Argalia extends Enemy
         round = 1;
     }
     
+    public int getRound()
+    {
+        return round;
+    }
+    
     /**
      * Resets instance variables
      */

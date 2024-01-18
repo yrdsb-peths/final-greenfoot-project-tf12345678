@@ -38,13 +38,13 @@ public class TitleScreen extends World
      */
     private void prepare()
     {
-        Label label = new Label("title", 100);
+        Label label = new Label("Roland's Furioso", 100);
         addObject(label,600,337);
         Label label2 = new Label("Press 'Enter' to play", 50);
         addObject(label2,600,430);
-        Label label3 = new Label("Use number keys 1 to 9 to select cards.", 50);
+        Label label3 = new Label("Use number keys 1 to 9 to select cards, press 'Enter' to confirm", 50);
         addObject(label3,600,490);
-        Label label4 = new Label("Defeat the enemy taking as little damage as possible.", 50);
+        Label label4 = new Label("Defeat Argalia as many times as possible (he gets stronger every time he dies)", 30);
         addObject(label4,600,560);
     }
 }

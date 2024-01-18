@@ -29,23 +29,14 @@ public class MyWorld extends World
         argalia.reset();
         TitleScreen.title.stop();
         game.playLoop();
-        
         prepare();
     }
     
-    public void gameWin()
+    public void gameOver()
     {
-        Label gameOverLabel = new Label("You win!", 300);
+        Label gameOverLabel = new Label("Game Over", 300);
         addObject(gameOverLabel, 600, 200);
-        Label tryAgainLabel = new Label("You took " + (150 - roland.getHP()) + " damage.", 100);
-        addObject(tryAgainLabel, 600, 400);
-    }
-    
-    public void gameLose()
-    {
-        Label gameOverLabel = new Label("You lose!", 300);
-        addObject(gameOverLabel, 600, 200);
-        Label tryAgainLabel = new Label("Try again.", 100);
+        Label tryAgainLabel = new Label("You beat Argalia " + (argalia.getRound() - 1) + " times", 100);
         addObject(tryAgainLabel, 600, 400);
     }
     

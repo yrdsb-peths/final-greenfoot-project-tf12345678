@@ -25,9 +25,10 @@ public class MyWorld extends World
         argalia.setHP(100);
         roland.setHP(150);
         roland.reset();
+        argalia.setRound();
         argalia.reset();
         TitleScreen.title.stop();
-        game.play();
+        game.playLoop();
         
         prepare();
     }

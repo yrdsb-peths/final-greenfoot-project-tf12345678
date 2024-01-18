@@ -40,25 +40,33 @@ public class Argalia extends Enemy
     //Variable for deciding which attack is chosen
     int randomAttack;
     
+    int round = 0;
+    
     public void act()
     {
         setHPLabel();
         setImage(currentImage);
         enemy = MyWorld.getRoland();
+        // calculateAttack(currentDice, 1);
+        if(currentAttack != null)
+        {
+            calculateAttack(currentDice, round);
+        }
         if(endTurn == true && currentAttack != null)
         {
             turnTowards();
             if(attacking == false)
             {
                 move(move);
-                if(diceRoll == 0)
-                {
-                    calculateAttack(currentDice);
-                }
+                // if(diceRoll == 0)
+                // {
+                    // calculateAttack(currentDice, round);
+                // }
             }
             if(attackIndex == currentAttack.length)
             {
-                diceLabel.setLocation(0, 1000);
+                // diceLabel.setLocation(0, 1000);
+                diceRoll = 0;
             }
             if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
@@ -70,6 +78,7 @@ public class Argalia extends Enemy
             }
             if(attacking == true)
             {
+                // calculateAttack(currentDice, round);
                 attack(currentAttack, damaged, currentCard, currentDiceType);
             }
         }
@@ -77,7 +86,8 @@ public class Argalia extends Enemy
         {
             if(HP <= 0)
             {
-                world.gameWin();
+                round ++;
+                HP = 100 + 50 * round;
             }
             currentImage = idle;
             if(randomAttack == 0)
@@ -112,6 +122,11 @@ public class Argalia extends Enemy
                 endTurn = true;
             }
         }
+    }
+    
+    public void setRound()
+    {
+        round = 1;
     }
     
     /**

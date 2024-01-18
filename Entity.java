@@ -154,8 +154,11 @@ public class Entity extends Actor
         //1000 millis delay
         if(timer.millisElapsed() >= 1000 && attackIndex != currentAttack.length)
         {
-            
             currentImage = animationFrames[attackIndex];
+            if(enemy.currentAttack != null)
+            {
+                clash();
+            }
             if(diceType[attackIndex] == 1 && clashLost == false)
             {
                 enemy.dealDamage(diceRoll);
@@ -189,18 +192,16 @@ public class Entity extends Actor
         }
     }
     
-    public void calculateAttack(int[] dice)
+    public void calculateAttack(int[] dice, int multiplier)
     {
-        lower = dice[attackIndex * 2];
-        upper = dice[attackIndex * 2 + 1];
-        //Roll a random number between lower (inclusive) and upper (exclusive)
-        diceRoll = random.nextInt(upper - lower) + lower;
-        
-        
-        if(enemy.currentAttack != null)
+        if(attackIndex != currentAttack.length)
         {
-            clash();
+            lower = dice[attackIndex * 2];
+            upper = dice[attackIndex * 2 + 1];
+            //Roll a random number between lower (inclusive) and upper (exclusive)
+            diceRoll = (random.nextInt(upper - lower) + lower) * multiplier;
         }
+        
     }
     
     /**

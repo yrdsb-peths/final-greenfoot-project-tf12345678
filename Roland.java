@@ -62,21 +62,26 @@ public class Roland extends Entity
         setHPLabel();
         setImage(currentImage);
         enemy = world.getEnemy();
+        // calculateAttack(currentDice, 1);
+        if(currentAttack != null)
+        {
+            calculateAttack(currentDice, 1);
+        }
         if(endTurn == true && currentAttack != null)
         {
             turnTowards();
             if(attacking == false)
             {
                 move(move);
-                if(diceRoll == 0)
-                {
-                    Log.info(2323);
-                    calculateAttack(currentDice);
-                }
+                // if(diceRoll == 0)
+                // {
+                    // calculateAttack(currentDice, 1);
+                // }
             }
             if(attackIndex == currentAttack.length)
             {
-                diceLabel.setLocation(0, 1000);
+                // diceLabel.setLocation(0, 1000);
+                diceRoll = 0;
             }
             if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 1000)
             {
@@ -88,7 +93,9 @@ public class Roland extends Entity
             }
             if(attacking == true)
             {
+                // calculateAttack(currentDice, 1);
                 attack(currentAttack, damaged, currentCard, currentDiceType);
+
             }
         }
         else if(endTurn == false)

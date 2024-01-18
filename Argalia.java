@@ -17,20 +17,20 @@ public class Argalia extends Enemy
     GreenfootImage slash = new GreenfootImage("images/Argalia_Slash.png");
     
     //Attack frames
-    GreenfootImage[] scout = {evade, blunt, block, block};
-    GreenfootImage[] preludio = {block, blunt, block, slash};
+    GreenfootImage[] dissonance = {evade, blunt, block, block};
+    GreenfootImage[] largo = {block, blunt, slash, slash};
     GreenfootImage[] trails = {slash, block, blunt, block};
     
     //Attack dice (int 1 and 2 are pairs, int 3 and 4 are pairs, etc.)
     //Each attack chooses a random number 
     //between its respective pair (ex. attack 1 rolls between int 1 and int 2)
-    int[] scoutDice = {5, 9, 4 ,7, 5, 9, 5, 8};
-    int[] preludioDice = {4, 7, 3, 6, 5, 8, 5, 8};
+    int[] dissonanceDice = {5, 9, 4 ,7, 5, 9, 5, 8};
+    int[] largoDice = {4, 7, 3, 6, 5, 8, 5, 8};
     int[] trailsDice = {8, 14, 5, 8, 5, 8, 5, 8};
     
     //Attack dice types (1 is attack, 2 is block, 3 is evade)
-    int[] scoutDiceType = {3, 1, 2, 2};
-    int[] preludioDiceType = {2, 1, 2, 1};
+    int[] dissonanceDiceType = {3, 1, 2, 2};
+    int[] largoDiceType = {2, 1, 1, 1};
     int[] trailsDiceType = {1, 2, 1, 2};
     
     //Variable for deciding which attack is chosen
@@ -47,6 +47,10 @@ public class Argalia extends Enemy
             if(attacking == false)
             {
                 move(move);
+            }
+            if(attackIndex == currentAttack.length)
+            {
+                diceLabel.setLocation(0, 1000);
             }
             if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 2000)
             {
@@ -70,15 +74,15 @@ public class Argalia extends Enemy
                 randomAttack = random.nextInt(4 - 1) + 1;
                 if(randomAttack == 1)
                 {
-                    currentAttack = scout;
-                    currentDice = scoutDice;
-                    currentDiceType = scoutDiceType;
+                    currentAttack = dissonance;
+                    currentDice = dissonanceDice;
+                    currentDiceType = dissonanceDiceType;
                 }
                 else if(randomAttack == 2)
                 {
-                    currentAttack = preludio;
-                    currentDice = preludioDice;
-                    currentDiceType = preludioDiceType;
+                    currentAttack = largo;
+                    currentDice = largoDice;
+                    currentDiceType = largoDiceType;
                 }
                 else
                 {

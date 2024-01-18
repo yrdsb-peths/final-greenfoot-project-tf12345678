@@ -18,7 +18,7 @@ public class Roland extends Entity
     GreenfootImage[] oldBoys = {new GreenfootImage("images/Roland_Block.png"), new GreenfootImage("images/Roland_Blunt.png")};
     GreenfootImage[] allas = {new GreenfootImage("images/Allas_1.png"), new GreenfootImage("images/Allas_1.png")};
     GreenfootImage[] mook = {new GreenfootImage("images/Mook_1.png")};
-    GreenfootImage[] atelier = {new GreenfootImage("images/Roland_Evade.png"), new GreenfootImage("images/Atelier_1.png"), new GreenfootImage("images/Atelier_2.png"), new GreenfootImage("images/Atelier_3.png")};
+    GreenfootImage[] atelier = {new GreenfootImage("images/Atelier_1.png"), new GreenfootImage("images/Atelier_2.png"), new GreenfootImage("images/Atelier_3.png")};
     GreenfootImage[] durandal = {new GreenfootImage("images/Durandal_1.png"), new GreenfootImage("images/Durandal_1.png")};
     GreenfootImage[] crystal = {new GreenfootImage("images/Roland_Evade.png"), new GreenfootImage("images/Crystal_2.png"), new GreenfootImage("images/Crystal_2.png"), new GreenfootImage("images/Crystal_2.png")};
     GreenfootImage[] wheels = {new GreenfootImage("images/Wheels_1.png"), new GreenfootImage("images/Roland_Block.png")};
@@ -58,6 +58,10 @@ public class Roland extends Entity
             if(attacking == false)
             {
                 move(move);
+            }
+            if(attackIndex == currentAttack.length)
+            {
+                diceLabel.setLocation(0, 1000);
             }
             if(enemy.currentAttack != null && attackIndex == currentAttack.length && enemy.attackIndex == enemy.currentAttack.length && timer.millisElapsed() >= 2000)
             {

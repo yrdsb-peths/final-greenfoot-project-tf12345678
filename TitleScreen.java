@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TitleScreen here.
+ * The title screen.
  * 
  * @author Timothy Fung
  * @version 2024-01-16
@@ -10,6 +10,9 @@ public class TitleScreen extends World
 {
     static GreenfootSound title = new GreenfootSound("sounds/title.wav");
     
+    /**
+     * Checks if the player has pressed enter, switches to the game world if so
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("enter"))

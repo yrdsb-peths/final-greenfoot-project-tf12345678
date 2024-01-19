@@ -20,16 +20,24 @@ C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\doc
 windows-1252
 -charset
 windows-1252
-C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\Label.java
+C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\Entity.java
 <---- end of javadoc command ---->
-Loading source file C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\Label.java...
+Loading source file C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\Entity.java...
 Constructing Javadoc information...
 warning: unknown enum constant Tag.Any
   reason: class file for threadchecker.Tag not found
 warning: unknown enum constant Tag.Any
+warning: unknown enum constant Tag.Any
+warning: unknown enum constant Tag.Any
 Standard Doclet version 17.0.4.1+1
 Building tree for all the packages and classes...
-Generating C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\doc\Label.html...
+Generating C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\doc\Entity.html...
+C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\Entity.java:217: warning: invalid input: '<'
+     * >, >= or < than the opposing entity
+                ^
+C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\Entity.java:217: warning: invalid input: '<'
+     * >, >= or < than the opposing entity
+                ^
 Generating C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\doc\package-summary.html...
 Generating C:\Users\timot\OneDrive\Documents\GitHub\final-greenfoot-project-tf12345678\doc\index.html...
-2 warnings
+6 warnings
